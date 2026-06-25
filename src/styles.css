@@ -1,0 +1,242 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =============================================================================
+ * METRO DICHROMATIC DESIGN SYSTEM
+ * Two colors only: ink (near-black) and cobalt (electric blue accent),
+ * painted on a paper-white canvas. Flat, sharp, typographic.
+ * =========================================================================== */
+
+@theme inline {
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-4xl: 0px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-ink: var(--ink);
+  --color-cobalt: var(--cobalt);
+  --color-paper: var(--paper);
+
+  --font-display: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0px;
+
+  /* Dichromatic palette */
+  --paper: oklch(0.99 0 0);
+  --ink: oklch(0.18 0 0);
+  --cobalt: oklch(0.52 0.24 264);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--cobalt);
+  --primary-foreground: oklch(1 0 0);
+
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: var(--ink);
+
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+
+  --accent: var(--cobalt);
+  --accent-foreground: oklch(1 0 0);
+
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: var(--ink);
+  --input: var(--ink);
+  --ring: var(--cobalt);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html,
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: var(--color-cobalt);
+    color: white;
+  }
+}
+
+/* ---------- Metro utilities ---------- */
+
+@utility tile {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  padding: 1.5rem;
+  transition: transform 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+@utility tile-accent {
+  background: var(--color-cobalt);
+  color: white;
+  border: 2px solid var(--color-cobalt);
+  padding: 1.5rem;
+  transition: transform 120ms ease;
+}
+
+@utility tile-ink {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border: 2px solid var(--color-ink);
+  padding: 1.5rem;
+}
+
+@utility tile-hover {
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 0 var(--color-ink);
+  }
+}
+
+@utility metro-heading {
+  font-weight: 200;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+@utility metro-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+@utility metro-input {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--color-ink);
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+  color: var(--color-ink);
+  &:focus {
+    border-color: var(--color-cobalt);
+  }
+  &::placeholder {
+    color: oklch(0.55 0 0);
+  }
+}
+
+@utility metro-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border: 2px solid var(--color-ink);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease;
+  &:hover {
+    background: var(--color-cobalt);
+    border-color: var(--color-cobalt);
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 0 var(--color-ink);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@utility metro-btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--color-cobalt);
+  color: white;
+  border: 2px solid var(--color-cobalt);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 120ms ease;
+  &:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0 0 var(--color-ink);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+@utility metro-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: transparent;
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease, color 120ms ease;
+  &:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+}
